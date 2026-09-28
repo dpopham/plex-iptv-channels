@@ -1,4 +1,4 @@
-# Plex IPTV Export
+# Plex IPTV Public Channels Export
 
 Logs into your Plex account, grabs an auth token, then downloads Plex's
 free ad-supported Live TV channel catalog as an **M3U playlist** plus an
