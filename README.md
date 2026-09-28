@@ -99,9 +99,9 @@ or you can point them at it manually.
 Reads a Plex Live TV channels.m3u (all group-title="Plex") and an optional
 epg.xml, then rewrites the M3U with more useful group-title values:
 
-  News, Sports, Spanish, Movies, Crime, Music, Kids, Reality, Comedy,
-  Sci-Fi / Fantasy, Drama, Lifestyle, Food, Documentary, Shopping,
-  Anime, Western, Gaming, Religion, Weather, Classic TV, Wrestling, Other
+>  News, Sports, Spanish, Movies, Crime, Music, Kids, Reality, Comedy,
+>  Sci-Fi / Fantasy, Drama, Lifestyle, Food, Documentary, Shopping,
+>  Anime, Western, Gaming, Religion, Weather, Classic TV, Wrestling, Other
 
 Classification is primarily keyword-based on the channel name, with optional
 hints from EPG programme data when available.
@@ -122,6 +122,6 @@ repsective pattern lists to match changing and new channels.
 ```
 
 ```bash
-python regroup_channels.py channels.m3u -o channels_grouped.m3u
+    python regroup_channels.py channels.m3u -o channels_grouped.m3u
 ```
 
