@@ -103,25 +103,41 @@ epg.xml, then rewrites the M3U with more useful group-title values:
 >  Sci-Fi / Fantasy, Drama, Lifestyle, Food, Documentary, Shopping,
 >  Anime, Western, Gaming, Religion, Weather, Classic TV, Wrestling, Other
 
-Classification is primarily keyword-based on the channel name, with optional
-hints from EPG programme data when available.
+plus language groups detected from the EPG text (see below):
 
-## How it works
+>  Spanish, Portuguese, French, German, Italian, Korean, Japanese, Chinese,
+>  Russian, Arabic, Hindi, Thai, Hebrew, Greek, International
 
-This examines the #EXTINF lines and replaces the group-title entry with a
-more useful value should there be a pattern match with any of the built-in 
-pattern lists.
+## Classification
+- Non-English EPG language (if an EPG is given). Programme titles,
+  sub-titles and descriptions are scanned for non-English content, using
+  the XMLTV lang="xx" attribute when present, otherwise script detection
+  (Hangul, Cyrillic, ...) and stop-word matching (Spanish, Portuguese,
+  French, German, Italian). If enough of a channel's programmes are in
+  one non-English language, the channel gets that language as its group.
+  (--lang-priority fallback makes this apply only after the name rules.)
+- Keyword rules on the channel name (the RULES table below).
+- Soft genre hints from the EPG <category> tags.
 
-As time goes on however it will be important to add more entries to the 
-repsective pattern lists to match changing and new channels.
+## Removing categories
+Use --remove-category (repeatable, or comma-separated) and/or
+--remove-file to drop every channel whose final group matches. Those
+channels are removed from the output M3U, and their <channel> and
+<programme> entries are removed from a filtered copy of the EPG. The
+output M3U's header (url-tvg / x-tvg-url) is updated to point at that
+filtered EPG file name.
 
 ## Usage
-
 ```bash
     python regroup_channels.py channels.m3u epg.xml -o channels_grouped.m3u
-```
-
-```bash
     python regroup_channels.py channels.m3u -o channels_grouped.m3u
+
+    # drop Shopping and Religion from both files
+    python regroup_channels.py channels.m3u epg.xml \\
+        -r Shopping -r Religion \\
+        -o channels_grouped.m3u --epg-output epg_filtered.xml
+
+    # same, with the list in a file (one per line, '#' comments allowed)
+    python regroup_channels.py channels.m3u epg.xml --remove-file remove.txt
 ```
 
