@@ -116,7 +116,7 @@ plus language groups detected from the EPG text (see below):
   French, German, Italian). If enough of a channel's programmes are in
   one non-English language, the channel gets that language as its group.
   (--lang-priority fallback makes this apply only after the name rules.)
-- Keyword rules on the channel name (the RULES table below).
+- Keyword rules on the channel name (the RULES table in the script).
 - Soft genre hints from the EPG <category> tags.
 
 ## Removing categories
